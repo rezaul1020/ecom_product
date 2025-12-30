@@ -35,19 +35,18 @@ class ProductFactory(factory.Factory):
         # Generate 100 Fake products
 
         def test_(self):
-        for _ in range(100):
-            record = 
-            {
-                "id": fake.id(),
-                "name": fake.name(),
-                "description": fake.description(),
-                "price": fake.price()
-                "category": fake.category()
-            }
-        data.append(record)
-
-# Create a pandas DataFrame
-df = pd.DataFrame(data)
+            for _ in range(100):
+                record = 
+                {
+                    "id": fake.id(),
+                    "name": fake.name(),
+                    "description": fake.description(),
+                    "price": fake.price()
+                    "category": fake.category()
+                }
+            data.append(record)
+            # Create a pandas DataFrame
+            df = pd.DataFrame(data)
 
 
 
