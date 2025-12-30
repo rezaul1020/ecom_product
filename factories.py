@@ -32,6 +32,14 @@ class ProductFactory(factory.Factory):
         id = factory.Sequence(lambda n: n)
     
         ## Add code to create Fake Products 
+        id = factory.Sequence(lambda n: n)
+        name = factory.Faker("name")
+        description = factory.Faker("description")
+        price = factory.Faker("price")        
+        category = factory.Faker("category")
+        available = FuzzyChoice(choices=[True, False])
+
+
         # Generate 100 Fake products
 
         def test_(self):
@@ -47,6 +55,13 @@ class ProductFactory(factory.Factory):
             data.append(record)
             # Create a pandas DataFrame
             df = pd.DataFrame(data)
+
+        def update(self):
+            """Updates a Account to the database"""
+            logger.info("Saving %s", self.name)
+            if not self.id:
+                raise DataValidationError("Update called with empty ID field")
+            db.session.commit()
 
 
 
