@@ -27,8 +27,29 @@ class ProductFactory(factory.Factory):
 
     class Meta:
         """Maps factory to data model"""
-
+        
         model = Product
+        id = factory.Sequence(lambda n: n)
+    
+        ## Add code to create Fake Products 
+        # Generate 100 Fake products
 
-    id = factory.Sequence(lambda n: n)
-   ## Add code to create Fake Products 
+        def test_(self):
+        for _ in range(100):
+            record = 
+            {
+                "id": fake.id(),
+                "name": fake.name(),
+                "description": fake.description(),
+                "price": fake.price()
+                "category": fake.category()
+            }
+        data.append(record)
+
+# Create a pandas DataFrame
+df = pd.DataFrame(data)
+
+
+
+
+
