@@ -52,15 +52,24 @@ class ProductFactory(factory.Factory):
                     "price": fake.price()
                     "category": fake.category()
                 }
-            data.append(record)
-            # Create a pandas DataFrame
-            df = pd.DataFrame(data)
+                               
+                data.append(record)
+                # Create a pandas DataFrame
+                df = pd.DataFrame(data)
 
+        def test_create_all_products(self):
+        """ Test creating multiple products """
+        for _ in range(10):
+            product = ProductFactory()
+            product.create()
+            
+        self.assertEqual(len(Account.all()), 10)
+        
         def update(self):
-            """Updates a Account to the database"""
+            """Updates a products to the database"""
             logger.info("Saving %s", self.name)
             if not self.id:
-                raise DataValidationError("Update called with empty ID field")
+                raise DataValidationError("Update called with ID field")
             db.session.commit()
 
 
