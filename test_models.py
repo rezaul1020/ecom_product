@@ -11,7 +11,7 @@ from models.product import Product, DataValidationError
 PRODUCT_DATA = {}
 
 class TestProductModel(TestCase):
-    """Test Account Model"""
+    """Test Product Model"""
 
     @classmethod
     def setUpClass(cls):
@@ -61,7 +61,7 @@ class TestProductModel(TestCase):
         self.assertEqual(str(account), "<Account 'Foo'>")
 
     def test_to_dict(self):
-        """ Test account to dict """
+        """ Test product to dict """
         data = PRODUCT_DATA[self.rand] # get a random account
         product = Product(**data)
         result = product.to_dict()
