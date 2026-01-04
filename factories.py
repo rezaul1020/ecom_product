@@ -70,6 +70,7 @@ class ProductFactory(factory.Factory):
             logger.info("Saving %s", self.name)
             if not self.id:
                 raise DataValidationError("Update called with ID field")
+                
             db.session.commit()
 
 
