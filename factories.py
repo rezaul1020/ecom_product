@@ -1,4 +1,3 @@
-# Copyright 2016, 2022 John J. Rofrano. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,53 +26,37 @@ class ProductFactory(factory.Factory):
 
     class Meta:
         """Maps factory to data model"""
-        
+
         model = Product
-        id = factory.Sequence(lambda n: n)
-    
-        ## Add code to create Fake Products 
-        id = factory.Sequence(lambda n: n)
-        name = factory.Faker("name")
-        description = factory.Faker("description")
-        price = factory.Faker("price")        
-        category = factory.Faker("category")
-        available = FuzzyChoice(choices=[True, False])
 
-
-        # Generate 100 Fake products
-
-        def test_(self):
-            for _ in range(100):
-                record = 
-                {
-                    "id": fake.id(),
-                    "name": fake.name(),
-                    "description": fake.description(),
-                    "price": fake.price()
-                    "category": fake.category()
-                }
-                               
-                data.append(record)
-                # Create a pandas DataFrame
-                df = pd.DataFrame(data)
-
-        def test_create_all_products(self):
-        """ Test creating multiple products """
-        for _ in range(10):
-            product = ProductFactory()
-            product.create()
-            
-        self.assertEqual(len(Account.all()), 10)
-        
-        def update(self):
-            """Updates a products to the database"""
-            logger.info("Saving %s", self.name)
-            if not self.id:
-                raise DataValidationError("Update called with ID field")
-                
-            db.session.commit()
-
-
-
-
-
+    id = factory.Sequence(lambda n: n)
+   ## Add code to create Fake Products 
+   
+    name = FuzzyChoice(
+        choices=[
+            "Hat",
+            "Pants",
+            "Shirt",
+            "Apple",
+            "Banana",
+            "Pots",
+            "Towels",
+            "Ford",
+            "Chevy",
+            "Hammer",
+            "Wrench"
+        ]
+    )
+    description = factory.Faker("text")
+    price = FuzzyDecimal(0.5, 2000.0, 2)
+    available = FuzzyChoice(choices=[True, False])
+    category = FuzzyChoice(
+        choices=[
+            Category.UNKNOWN,
+            Category.CLOTHS,
+            Category.FOOD,
+            Category.HOUSEWARES,
+            Category.AUTOMOTIVE,
+            Category.TOOLS,
+        ]
+    )
